@@ -10,7 +10,13 @@
 
 void binary_tree_preorder(const binary_tree_t *tree, void (*func)(int))
 {
+	if (func == NULL || tree == NULL)
+		return;
+	/*
+	 A preorder traversal goes in the order of:
+	 display(root->data), preorder(left), preorder(right)
+	*/
 	func(tree->n);
-	binary_tree_preorder(tree->left, void (*func)(tree->left->n));
-	binary_tree_preorder(tree->right, void (*func)(tree->right->n));
+	binary_tree_preorder(tree->left, func);
+	binary_tree_preorder(tree->right, func);
 }
